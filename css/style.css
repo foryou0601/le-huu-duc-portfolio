@@ -192,8 +192,20 @@ header {
 .menu-btn {
     display: none;
 
+    padding: 0;
+    border: 0;
+
+    color: inherit;
+    background: transparent;
+
     font-size: 1.4rem;
     cursor: pointer;
+}
+
+.menu-btn:focus-visible,
+.project-card:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
 }
 
 
@@ -331,41 +343,6 @@ header {
 
     transform: translateY(-4px);
 }
-
-.social-links {
-    display: flex;
-    gap: 15px;
-}
-
-.social-links a {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid var(--border);
-
-    border-radius: 50%;
-
-    color: var(--text-secondary);
-
-    background: rgba(255, 255, 255, 0.03);
-
-    transition: var(--transition);
-}
-
-.social-links a:hover {
-    color: white;
-
-    background: var(--primary);
-
-    border-color: var(--primary);
-
-    transform: translateY(-5px);
-}
-
 
 /* =========================================================
    05. HERO AVATAR
@@ -581,59 +558,6 @@ header {
    09. SKILLS
    ========================================================= */
 
-.skills-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(6, 1fr);
-
-    gap: 18px;
-}
-
-.skill-card {
-    padding: 28px 15px;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-
-    background: var(--bg-card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 18px;
-
-    transition: var(--transition);
-}
-
-.skill-card i {
-    font-size: 2rem;
-
-    color: var(--primary);
-}
-
-.skill-card h3 {
-    font-size: 0.9rem;
-}
-
-.skill-card:hover {
-    transform: translateY(-8px);
-
-    background:
-        rgba(59, 130, 246, 0.08);
-
-    border-color:
-        rgba(59, 130, 246, 0.4);
-
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.2);
-}
-
-
 /* =========================================================
    PROJECTS
    ========================================================= */
@@ -671,7 +595,10 @@ header {
 .project-card {
     display: flex;
     flex-direction: column;
+    height: 100%;
     min-width: 0;
+
+    cursor: pointer;
 
     background: rgba(30, 41, 59, 0.75);
 
@@ -1019,97 +946,6 @@ header {
     transform: scale(1.15);
 
     color: var(--secondary);
-}
-
-
-/* =========================================================
-   12. GITHUB
-   ========================================================= */
-
-.github-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 25px;
-}
-
-.github-card {
-    padding: 30px;
-
-    background: var(--bg-card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 20px;
-
-    backdrop-filter: blur(15px);
-
-    transition: var(--transition);
-}
-
-.github-card:hover {
-    transform: translateY(-8px);
-
-    border-color:
-        rgba(255, 255, 255, 0.18);
-
-    box-shadow: var(--shadow);
-}
-
-.github-icon {
-    width: 50px;
-    height: 50px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 20px;
-
-    border-radius: 12px;
-
-    background:
-        rgba(255, 255, 255, 0.07);
-}
-
-.github-icon i {
-    font-size: 1.5rem;
-}
-
-.github-card h3 {
-    margin-bottom: 12px;
-}
-
-.github-card p {
-    color: var(--text-muted);
-
-    font-size: 0.9rem;
-
-    margin-bottom: 25px;
-}
-
-.github-btn {
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    color: #93c5fd;
-
-    font-size: 0.85rem;
-
-    font-weight: 600;
-
-    transition: var(--transition);
-}
-
-.github-btn:hover {
-    color: white;
-
-    gap: 12px;
 }
 
 
@@ -1555,11 +1391,6 @@ footer {
         gap: 40px;
     }
 
-    .skills-grid {
-        grid-template-columns:
-            repeat(3, 1fr);
-    }
-
     .tech-grid {
         grid-template-columns:
             repeat(3, 1fr);
@@ -1656,10 +1487,6 @@ footer {
         justify-content: center;
     }
 
-    .social-links {
-        justify-content: center;
-    }
-
     .hero-right {
         order: -1;
     }
@@ -1697,14 +1524,6 @@ footer {
     }
 
 
-    /* SKILLS */
-
-    .skills-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-
     /* PROJECTS */
 
     .project-grid {
@@ -1719,15 +1538,6 @@ footer {
         grid-template-columns:
             repeat(2, 1fr);
     }
-
-
-    /* GITHUB */
-
-    .github-grid {
-        grid-template-columns:
-            1fr;
-    }
-
 
     /* EDUCATION */
 
@@ -1783,15 +1593,6 @@ footer {
     .avatar {
         width: 210px;
         height: 210px;
-    }
-
-    .skills-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .skill-card {
-        padding: 22px 10px;
     }
 
     .tech-grid {
@@ -2284,93 +2085,5 @@ footer {
         font-size: 17px;
 
     }
-
-}
-/* =========================================================
-   PROJECT GITHUB LINK
-   ========================================================= */
-
-.project-card-link {
-    display: block;
-
-    text-decoration: none;
-
-    color: inherit;
-
-    height: 100%;
-}
-
-
-/* Card */
-
-.project-card {
-    height: 100%;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.35s ease,
-        border-color 0.35s ease,
-        box-shadow 0.35s ease;
-}
-
-
-/* Hover */
-
-.project-card-link:hover .project-card {
-
-    transform: translateY(-8px);
-
-    border-color: rgba(96, 165, 250, 0.6);
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.35),
-        0 0 25px rgba(96, 165, 250, 0.08);
-
-}
-
-
-/* Image */
-
-.project-card-link:hover .project-image img {
-
-    transform: scale(1.04);
-
-}
-
-
-/* GitHub button */
-
-.project-link {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    color: #cbd5e1;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    transition:
-        color 0.25s ease,
-        transform 0.25s ease;
-
-}
-
-
-.project-card-link:hover .project-link {
-
-    color: #60a5fa;
-
-}
-
-
-.project-link i {
-
-    font-size: 16px;
 
 }

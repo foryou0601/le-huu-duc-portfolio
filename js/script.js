@@ -38,6 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
         menuBtn.addEventListener("click", () => {
 
             navMenu.classList.toggle("active");
+            const isOpen = navMenu.classList.contains("active");
+
+            menuBtn.setAttribute("aria-expanded", String(isOpen));
+            menuBtn.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
 
         });
 
@@ -47,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
             link.addEventListener("click", () => {
 
                 navMenu.classList.remove("active");
+                menuBtn.setAttribute("aria-expanded", "false");
+                menuBtn.setAttribute("aria-label", "Open navigation menu");
 
             });
 
@@ -169,29 +178,27 @@ document.addEventListener("DOMContentLoaded", () => {
         const target =
             Number(counter.dataset.target);
 
-        let current = 0;
-
         const duration = 1200;
+        let startTime = null;
 
-        const increment =
-            target / (duration / 30);
+        function updateCounter(timestamp) {
 
-        function updateCounter() {
-
-            current += increment;
-
-            if (current >= target) {
-
-                counter.textContent = target;
-
-                return;
-
+            if (startTime === null) {
+                startTime = timestamp;
             }
 
-            counter.textContent =
-                Math.floor(current);
+            const progress = Math.min(
+                (timestamp - startTime) / duration,
+                1
+            );
 
-            requestAnimationFrame(updateCounter);
+            counter.textContent = Math.floor(target * progress);
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target;
+            }
 
         }
 
@@ -278,6 +285,16 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        function openProject() {
+
+            const url = sourceLink.getAttribute("href");
+
+            if (url && url !== "#") {
+                window.open(url, "_blank", "noopener,noreferrer");
+            }
+
+        }
+
         card.addEventListener("click", (event) => {
 
             /*
@@ -291,20 +308,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const url =
-                sourceLink.getAttribute("href");
+            openProject();
 
-            if (
-                url &&
-                url !== "#"
-            ) {
+        });
 
-                window.open(
-                    url,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
+        card.addEventListener("keydown", (event) => {
 
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openProject();
             }
 
         });
@@ -328,7 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks =
         document.querySelectorAll(".nav-menu a");
 
-    window.addEventListener("scroll", () => {
+    function updateActiveNavigation() {
 
         let currentSection = "";
 
@@ -368,6 +380,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
-    });
+    }
+
+    window.addEventListener("scroll", updateActiveNavigation);
+    updateActiveNavigation();
 
 });

@@ -46,6 +46,150 @@ button {
 
 
 /* =========================================================
+   02. FOREST INTRO
+   ========================================================= */
+
+.forest-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, rgba(8, 28, 38, 0.15), rgba(4, 15, 22, 0.78)),
+        radial-gradient(circle at 50% 28%, #6eaa9a 0%, #254f53 35%, #0b202b 78%);
+    transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+
+.forest-intro.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.forest-content {
+    position: relative;
+    z-index: 3;
+    width: min(600px, 90%);
+    padding: 36px 28px;
+    text-align: center;
+    color: #f1f7ed;
+    animation: forestContentIn 1.2s ease both;
+}
+
+.forest-kicker {
+    margin-bottom: 12px;
+    color: #d7e9ad;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.forest-content h1 {
+    margin-bottom: 14px;
+    font-size: clamp(2.4rem, 7vw, 5.2rem);
+    line-height: 1.05;
+    font-weight: 700;
+    text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.forest-content > p:not(.forest-kicker) {
+    color: rgba(241, 247, 237, 0.82);
+    font-size: 1rem;
+}
+
+.forest-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 13px 24px;
+    border: 1px solid rgba(234, 248, 202, 0.5);
+    border-radius: 999px;
+    background: rgba(20, 52, 53, 0.68);
+    color: #f7ffe9;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.forest-button:hover {
+    transform: translateY(-4px);
+    border-color: #d7e9ad;
+    background: rgba(56, 103, 83, 0.9);
+}
+
+.forest-button:focus-visible {
+    outline: 2px solid #f0f7bb;
+    outline-offset: 4px;
+}
+
+.forest-trees {
+    position: absolute;
+    right: -4%;
+    bottom: -3%;
+    left: -4%;
+    height: 48%;
+    opacity: 0.82;
+    background:
+        linear-gradient(120deg, transparent 0 6%, #0b2727 6% 10%, transparent 10% 17%, #123534 17% 23%, transparent 23% 31%, #092323 31% 38%, transparent 38% 48%, #123a34 48% 56%, transparent 56% 66%, #092323 66% 73%, transparent 73% 83%, #143e35 83% 90%, transparent 90%),
+        linear-gradient(75deg, transparent 0 12%, #092323 12% 18%, transparent 18% 28%, #123534 28% 35%, transparent 35% 45%, #092323 45% 53%, transparent 53% 64%, #123a34 64% 71%, transparent 71% 82%, #092323 82% 88%, transparent 88%);
+    clip-path: polygon(0 58%, 5% 33%, 10% 55%, 16% 18%, 22% 53%, 30% 8%, 37% 52%, 46% 20%, 53% 53%, 61% 5%, 68% 51%, 76% 25%, 83% 54%, 90% 12%, 97% 52%, 100% 35%, 100% 100%, 0 100%);
+}
+
+.forest-trees-back {
+    bottom: 12%;
+    height: 42%;
+    opacity: 0.42;
+    transform: scale(1.15);
+    filter: blur(1px);
+}
+
+.forest-trees-front {
+    z-index: 2;
+    height: 35%;
+    opacity: 0.95;
+    background-color: #06191c;
+}
+
+.forest-mist {
+    position: absolute;
+    z-index: 1;
+    width: 70vw;
+    height: 14vh;
+    border-radius: 50%;
+    background: rgba(210, 237, 211, 0.14);
+    filter: blur(22px);
+    animation: mistDrift 9s ease-in-out infinite alternate;
+}
+
+.forest-mist-one {
+    top: 43%;
+    left: -12%;
+}
+
+.forest-mist-two {
+    right: -18%;
+    bottom: 30%;
+    animation-delay: -4s;
+}
+
+@keyframes forestContentIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mistDrift {
+    from { transform: translateX(-3%); }
+    to { transform: translateX(9%); }
+}
+
+
+/* =========================================================
    02. GLOBAL
    ========================================================= */
 

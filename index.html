@@ -76,6 +76,18 @@
 
             </button>
 
+            <button
+                id="musicToggle"
+                class="music-toggle"
+                type="button"
+                aria-label="Play background music"
+                aria-pressed="false"
+                title="Play background music"
+            >
+                <i class="fa-solid fa-music" aria-hidden="true"></i>
+                <span class="music-toggle-label">Music</span>
+            </button>
+
         </nav>
 
     </header>
@@ -1400,6 +1412,12 @@
         <i class="fa-solid fa-arrow-up"></i>
 
     </button>
+
+    <!-- Add your licensed MP3 file at assets/background-music.mp3 -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="assets/background-music.mp3" type="audio/mpeg">
+        Your browser does not support background audio.
+    </audio>
 
 
     <!-- ================= JavaScript ================= -->

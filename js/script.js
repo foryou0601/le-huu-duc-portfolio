@@ -6,6 +6,53 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
+       BACKGROUND MUSIC
+    ========================================= */
+
+    const backgroundMusic = document.getElementById("backgroundMusic");
+    const musicToggle = document.getElementById("musicToggle");
+
+    if (backgroundMusic && musicToggle) {
+
+        backgroundMusic.volume = 0.25;
+
+        const updateMusicButton = (isPlaying) => {
+            musicToggle.classList.toggle("is-playing", isPlaying);
+            musicToggle.setAttribute("aria-pressed", String(isPlaying));
+            musicToggle.setAttribute(
+                "aria-label",
+                isPlaying ? "Pause background music" : "Play background music"
+            );
+            musicToggle.title = isPlaying
+                ? "Pause background music"
+                : "Play background music";
+        };
+
+        const playMusic = () => backgroundMusic.play()
+            .then(() => updateMusicButton(true))
+            .catch(() => updateMusicButton(false));
+
+        // Browsers may block audible autoplay until the visitor interacts.
+        window.addEventListener("load", playMusic, { once: true });
+
+        musicToggle.addEventListener("click", () => {
+            if (backgroundMusic.paused) {
+                playMusic();
+            } else {
+                backgroundMusic.pause();
+            }
+        });
+
+        backgroundMusic.addEventListener("play", () => updateMusicButton(true));
+        backgroundMusic.addEventListener("pause", () => updateMusicButton(false));
+        backgroundMusic.addEventListener("error", () => {
+            musicToggle.disabled = true;
+            musicToggle.title = "Background music file is unavailable";
+        });
+
+    }
+
+    /* =========================================
        LOADING SCREEN
     ========================================= */
 

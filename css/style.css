@@ -202,6 +202,50 @@ header {
     cursor: pointer;
 }
 
+.music-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 42px;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(30, 41, 59, 0.65);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.music-toggle:hover,
+.music-toggle.is-playing {
+    color: #fff;
+    border-color: transparent;
+    background: var(--gradient);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
+}
+
+.music-toggle.is-playing i {
+    animation: music-pulse 1.2s ease-in-out infinite;
+}
+
+.music-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.music-toggle:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+@keyframes music-pulse {
+    50% {
+        transform: scale(1.18);
+    }
+}
+
 .menu-btn:focus-visible,
 .project-card:focus-visible {
     outline: 3px solid var(--accent);

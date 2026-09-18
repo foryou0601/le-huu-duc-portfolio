@@ -35,6 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // Browsers may block audible autoplay until the visitor interacts.
         window.addEventListener("load", playMusic, { once: true });
 
+        const startMusicAfterInteraction = (event) => {
+            if (event.target.closest("#musicToggle")) {
+                return;
+            }
+
+            if (backgroundMusic.paused) {
+                playMusic();
+            }
+        };
+
+        document.addEventListener("pointerdown", startMusicAfterInteraction, { once: true });
+        document.addEventListener("keydown", startMusicAfterInteraction, { once: true });
+
         musicToggle.addEventListener("click", () => {
             if (backgroundMusic.paused) {
                 playMusic();
